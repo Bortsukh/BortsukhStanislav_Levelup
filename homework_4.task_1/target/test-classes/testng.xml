@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="suite">
+
+    <test name="alltests">
+        <packages>
+            <package name="LevelUpAT.*"/>
+        </packages>
+    </test>
+
+    <test name="sumsub">
+        <classes>
+            <class name="LevelUpAT.SumSubCalculatorTesting"/>
+        </classes>
+    </test>
+
+    <test name="powdiv">
+        <classes>
+            <class name="LevelUpAT.PowSqrtCalculatorTesting"/>
+        </classes>
+    </test>
+
+</suite>
