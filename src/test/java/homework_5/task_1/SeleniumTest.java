@@ -63,22 +63,32 @@ public class SeleniumTest {
         driver.findElement(By.xpath("//ul[contains(@class, 'nav-list')]//li[7]")).click();
     }
 
-    @Test
-    public void addProject(){
+    @Test(dependsOnMethods={"openAndLogin"},alwaysRun=true)
+    public void addProject() {
         //Click "Manage Projects" button at the top menuon the "Manage MantisBT" page
         driver.findElement(By.xpath("//ul[contains(@class, 'nav-tabs')]//li[3]")).click();
         assertThat(driver.getTitle(), equalTo("Manage Projects - MantisBT"));
         //Click "Create New Projects" button
         driver.findElement(By.xpath("//form//button[contains(@class, 'btn-primary')]")).click();
         //Check fields on the "Add Project" view	"Project Name Status Inherit Global Categories View Status Description"
-//        List <String> expCategory = Arrays.asList(new String[]{"Project Name", "Status", "Inherit Global Categories",
+//        List<String> expCategory = Arrays.asList(new String[]{"Project Name", "Status", "Inherit Global Categories",
 //                "View Status", "Description"});
 //        List<WebElement> category = driver.findElements(By.className("category"));
 //        List<String> actCategory = new ArrayList<>();
-//        for ( WebElement categories : category) {
+//        for (WebElement categories : category) {
 //            actCategory.add(categories.getText());
 //        }
-//        assertThat(expCategory, equalTo(expCategory));
+//        assertThat(actCategory, equalTo(expCategory));
+        //Fill Project inforamtion
+        driver.findElement(By.id("project-name")).sendKeys("SB");
+        driver.findElement(By.id("project-description")).sendKeys("new one");
+        //Add project
+        driver.findElement(By.xpath("//input[@type, 'submit']")).click();
+        //delete Created class
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.findElement(By.xpath("//table[contains(text(),'SB')]")).click();
+        driver.findElement(By.xpath("//input[@value ='Delete Project']")).click();
+        driver.findElement(By.xpath("//input[@value ='Delete Project']")).click();
     }
 
     @AfterTest
