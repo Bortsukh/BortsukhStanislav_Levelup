@@ -30,7 +30,7 @@ public class SeleniumTest {
         ChromeOptions options = new ChromeOptions();
         //english language
         options.addArguments("--lang=en");
-        WebDriver driver = new ChromeDriver(options);
+        driver = new ChromeDriver(options);
         //open test site
         driver.get("http://khda91.fvds.ru/mantisbt/");
         //catch exception
