@@ -91,6 +91,55 @@ public class SeleniumTest {
         driver.findElement(By.xpath("//input[@value ='Delete Project']")).click();
     }
 
+    @Test(alwaysRun=true)
+    public void addUser() {
+        //Click "Manage Projects" button at the top menuon the "Manage MantisBT" page
+        driver.findElement(By.xpath("//ul[contains(@class, 'nav-tabs')]//li[2]")).click();
+        assertThat(driver.getTitle(), equalTo("Manage Users - MantisBT"));
+        //Check "Create New Account" button
+        String nameOfButton = driver.findElement(By.xpath("//div[@id='manage-user-div']//a[contains(@class, 'btn')]")).getText();
+        assertThat("Create New Account", equalTo(nameOfButton));
+        //Click "Create New Account" button
+        driver.findElement(By.xpath("//div[contains(@class, 'pull-left')]")).click();
+        //Check fields on the "Create New Account" view
+        List<String> expCategory = Arrays.asList(new String[]{"Username",
+                "Real Name",
+                "E-mail",
+                "Password",
+                "Verify Password",
+                "Access Level",
+                "Enabled",
+                "Protected"});
+        List<WebElement> category = driver.findElements(By.className("category"));
+        List<String> actCategory = new ArrayList<>();
+        for (WebElement categories : category) {
+            actCategory.add(categories.getText());
+        }
+        assertThat(actCategory, equalTo(expCategory));
+        //Fill user inforamtion Username: any Real Name: any E-Mail: any Password: any Verify Password: any Access Level: reporter Enabled: true Protected: false
+        driver.findElement(By.id("user-username")).sendKeys("vova");
+        driver.findElement(By.id("user-realname")).sendKeys("vovochka");
+        driver.findElement(By.id("email-field")).sendKeys("vova@kkk.ru");
+        driver.findElement(By.id("user-password")).sendKeys("vova");
+        driver.findElement(By.id("user-verify-password")).sendKeys("vova");
+        //driver.findElement(By.xpath("//select[@id='user-access-level']//option[@value='25']")).click();
+        //driver.findElement(By.xpath("//input[@id='user-protected']")).click();
+        //Click "Create User" button
+        driver.findElement(By.xpath("//input[@value='Create User']")).click();
+        //Logout
+        driver.findElement(By.xpath("//span[contains(@class, 'user-info')]")).click();
+        driver.findElement(By.xpath("//ul[contains(@class, 'nav')]//i[contains(@class, 'fa-sign-out')]")).click();
+        //Login under created user
+        driver.findElement(By.id("username")).sendKeys("vova");
+        driver.findElement(By.xpath("//input[@type='submit']")).click();
+        driver.findElement(By.xpath("//input[@type='password']")).sendKeys("vova");
+        driver.findElement(By.className("btn-success")).click();
+        //Assert User name in the right-top side of screen that user is loggined
+        String nameOfCreatedUser = driver.findElement(By.className("user-info")).getText();
+        assertThat("vova",equalTo(nameOfCreatedUser));
+
+    }
+
     @AfterTest
     public void logoutAndClose(){
         //logout
