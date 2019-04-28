@@ -20,11 +20,11 @@ public class HomePage extends BaseComponent {
     @FindBy(xpath="//ul[contains(@class, 'nav-list')]//li")
     private List<WebElement> naviList;
 
-    @FindBy(xpath = "//span[contains(@class, 'user-info')]")
-    private WebElement userInfo;
-
-    @FindBy(xpath = "//ul[contains(@class, 'nav')]//i[contains(@class, 'fa-sign-out')]")
-    private WebElement singOutButton;
+//    @FindBy(xpath = "//span[contains(@class, 'user-info')]")
+//    private WebElement userInfo;
+//
+//    @FindBy(xpath = "//ul[contains(@class, 'nav')]//i[contains(@class, 'fa-sign-out')]")
+//    private WebElement singOutButton;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -42,12 +42,12 @@ public class HomePage extends BaseComponent {
         return naviList;
     }
 
-    public void clickUserInfo(){
-        userInfo.click();
-    }
-
-    public void clickSingOutButton(){
-        singOutButton.click();
-    }
+//    public void clickUserInfo(){
+//        userInfo.click();
+//    }
+//
+//    public void clickSingOutButton(){
+//        singOutButton.click();
+//    }
 
 }

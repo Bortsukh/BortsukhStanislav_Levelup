@@ -45,7 +45,7 @@ public class BaseTest {
             e.printStackTrace();
         }
         //check Title
-        assertThat(driver.getTitle(), equalTo("MantisBT"));
+        assertThat(homePage.getPageTitle(), equalTo("MantisBT"));
 
         //login
         loginPage.login("admin", "admin");
@@ -73,7 +73,7 @@ public class BaseTest {
     public void addProject() {
         //Click "Manage Projects" button at the top menuon the "Manage MantisBT" page
         managePage.clickManageProjects();
-        assertThat(driver.getTitle(), equalTo("Manage Projects - MantisBT"));
+        assertThat(managePage.getPageTitle(), equalTo("Manage Projects - MantisBT"));
 
         //Click "Create New Projects" button
         managePage.clickCreateNewProject();
@@ -101,7 +101,7 @@ public class BaseTest {
     public void addUser() {
         //Click "Manage Projects" button at the top menuon the "Manage MantisBT" page
         managePage.clickManageUsers();
-        assertThat(driver.getTitle(), equalTo("Manage Users - MantisBT"));
+        assertThat(managePage.getPageTitle(), equalTo("Manage Users - MantisBT"));
 
         //Check "Create New Account" button
         String nameOfButton = managePage.nameOfCreateNewAccountButton();
@@ -131,8 +131,8 @@ public class BaseTest {
         managePage.createNewUser("vova", "vovochka", "vova@kkk.ru", "vova", "vova" );
 
         //Logout
-        homePage.clickUserInfo();
-        homePage.clickSingOutButton();
+        managePage.clickUserInfo();
+        managePage.clickSingOutButton();
 
         //Login under created user
         loginPage.login("vova", "vova");

@@ -42,11 +42,6 @@ public class ManagePage extends BaseComponent {
     private WebElement userPasswordVerify;
     @FindBy(xpath = "//input[@value='Create User']")
     private WebElement createUserButton;
-    //driver.findElement(By.id("user-username")).sendKeys("vova");
-    //driver.findElement(By.id("user-realname")).sendKeys("vovochka");
-    //driver.findElement(By.id("email-field")).sendKeys("vova@kkk.ru");
-    //driver.findElement(By.id("user-password")).sendKeys("vova");
-    //driver.findElement(By.id("user-verify-password")).sendKeys("vova");
 
     public ManagePage(WebDriver driver) {
         super(driver);
